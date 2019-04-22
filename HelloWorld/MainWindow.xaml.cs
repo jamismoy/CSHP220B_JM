@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.Entity;
 
 namespace HelloWorld
 {
@@ -25,6 +26,12 @@ namespace HelloWorld
         {
             InitializeComponent();
             DisableOrEnableSubmit();
+
+            var sample = new SampleEntities();
+
+            sample.Users.Load();
+
+            uxList.ItemsSource = sample.Users.Local;
             //WindowState = WindowState.Maximized;
         }
         public override void EndInit()
