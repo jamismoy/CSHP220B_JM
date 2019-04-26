@@ -22,7 +22,7 @@ namespace HelloWorld
         public StatusWindow()
         {
             InitializeComponent();
-            uxProgressBar.Maximum = 100; // Set the maximum
+            uxProgressBar.Maximum = uxTextEditor.MaxLength; ; // Set the maximum
         }
 
         private void uxTextEditor_SelectionChanged(object sender, RoutedEventArgs e)
@@ -32,7 +32,11 @@ namespace HelloWorld
 
             uxStatus.Text = "Line " + (row + 1) + ", Char " + (col + 1);
 
-            uxProgressBar.Value = uxTextEditor.Text.Length; // Set the progressbar
+            uxProgressBar.Value = uxTextEditor.Text.Length;
+
+            int percent = uxTextEditor.Text.Length * 100 / uxTextEditor.MaxLength;
+
+            uxPercentComplete.Text = string.Format("{0}%", percent);
         }
     }
 }

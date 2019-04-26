@@ -60,8 +60,14 @@
     <Compile Include="ComboWindow.xaml.cs">
       <DependentUpon>ComboWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ControlWindow.xaml.cs">
+      <DependentUpon>ControlWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MenuWindow.xaml.cs">
       <DependentUpon>MenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NavigatorWindow.xaml.cs">
+      <DependentUpon>NavigatorWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Sample.Context.cs">
       <AutoGen>True</AutoGen>
@@ -91,6 +97,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ControlWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -104,6 +114,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NavigatorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -159,6 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\wpf-menus-new.png" />
+    <Resource Include="images\wpf-world.png" />
     <Content Include="Sample.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Sample.edmx</DependentUpon>
