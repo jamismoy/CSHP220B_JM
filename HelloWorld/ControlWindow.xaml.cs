@@ -39,6 +39,8 @@ namespace HelloWorld
             var checkbox = (CheckBox)sender;
             if (checkbox.IsChecked.HasValue && checkbox.IsChecked.Value)
             {
+                var msg = Application.Current.FindResource("Checked").ToString();
+                MessageBox.Show(checkbox.Content + msg);
                 MessageBox.Show($"{checkbox.Content}" + " Checked");
             }
             else
