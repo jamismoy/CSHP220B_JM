@@ -3,6 +3,13 @@
     Layout = null;
 }
 <!DOCTYPE html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title>RsvpForm</title>
+</head>
+
 <h1>Thank you, @Model.Name we will email you at @Model.Email</h1>
 @if (Model.WillAttend == true)
 {
