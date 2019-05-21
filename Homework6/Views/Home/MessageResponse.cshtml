@@ -1,0 +1,16 @@
+﻿@model Homework6.Models.SendMessage
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title>Message Response</title>
+</head>
+
+<h1 class="panel-heading text-left">Birthday Card Sent</h1>
+<p>From: @Model.From</p>
+<p>To: @Model.To</p>
+<p>Message: @Model.Message</p>
