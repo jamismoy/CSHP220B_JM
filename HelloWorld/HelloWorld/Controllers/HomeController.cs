@@ -4,42 +4,69 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace HelloWorld.Controllers
 {
+    [Logging]
+    //[AuthorizeIPAddress]
     public class HomeController : Controller
     {
+        private IProductRepository productRepository;
+
+        public HomeController(IProductRepository productRepository)
+        {
+            this.productRepository = productRepository;
+        }
+
         // GET: Home
         public ActionResult Index()
         {
+            //int x = 1;
+            //x = x / (x - 1);
             return View();
         }
 
 
         public ActionResult Product()
         {
-            var myProduct = new Product
-            {
-                ProductId = 1,
-                Name = "Kayak",
-                Description = "A boat for one person",
-                Category = "water-sports",
-                Price = 200m,
-            };
+            var myProduct = productRepository.Products.First();
 
             return View(myProduct);
+            
+
         }
+        //[OutputCache(Duration = 15, Location = OutputCacheLocation.Any, VaryByParam = "none")]
         public ActionResult Products()
         {
-            var products = new Product[]
-            {
-                new Product{ ProductId = 1, Name = "First One", Price = 1.11m},
-                new Product{ ProductId = 2, Name="Second One", Price = 2.22m},
-                new Product{ ProductId = 3, Name="Third One", Price = 3.33m},
-                new Product{ ProductId = 4, Name="Fourth One", Price = 4.44m},
-            };
+            var products = productRepository.Products;
 
             return View(products);
+        }
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        public ActionResult Logoff()
+        {
+            Session["UserName"] = null;
+            return RedirectToAction("Index");
+        }
+
+        public PartialViewResult DisplayLoginName()
+        {
+            return new PartialViewResult();
+        }
+
+
+        [HttpPost]
+        public ActionResult Login(LoginModel loginModel)
+        {
+            Session["UserName"] = loginModel.UserName;
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -59,6 +86,33 @@ namespace HelloWorld.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult Error()
+        {
+            return View();
+        }
+
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            base.OnException(filterContext);
+        }
+
+        public PartialViewResult IncrementCount()
+        {
+            int count = 0;
+
+            // Check if MyCount exists
+            if (Session["MyCount"] != null)
+            {
+                count = (int)Session["MyCount"];
+                count++;
+            }
+
+            // Create the MyCount session variable
+            Session["MyCount"] = count;
+
+            return new PartialViewResult();
         }
     }
 }
